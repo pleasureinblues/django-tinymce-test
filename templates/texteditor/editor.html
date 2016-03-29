@@ -1,0 +1,59 @@
+
+<!doctype html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+    <script src="{% static 'django-tinymce-master/tinymce/media/tiny_mce/tiny_mce.js' %}"></script>
+</head>
+
+<body>
+
+
+{% block title %} TinyMCE Test{% endblock %}
+
+{% block body_block %}
+
+{{ form1.media }}
+
+<div class="col-md-offset-2 col-md-8">
+        <h3>Add Your Post</h3>
+        <form id="post_form" method="post" action=""/>
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}<br>
+            {% endfor %}
+
+        <input type="submit" name="submit" value="Submit New Post"/>
+        </form>
+
+</div>
+
+<script>
+tinyMCE.init({
+  mode: "textareas",  // to do all text areas
+  // or
+  selector: "#id_myfield",  // change this value according to your HTML
+});
+</script>
+{% endblock %}
+
+
+</body>
+</html>
