@@ -5,6 +5,27 @@
     <title>Title</title>
 </head>
 <body>
+{% block title %} <h2>TinyMCE Test</h2>{% endblock %}
+<div>
+    <br>
+<a href="{% url 'texteditor:editor' %}">Editor</a>
+<a href="{% url 'texteditor:data_view' %}">Messages</a>
+</div>
+<div>
 
+{% if post %}
+
+{% for p in post %}
+
+<h3>{{ p.title }}</h3>
+<div>{{ p.content | safe }}</div>
+<hr>
+{% endfor %}
+{% else %}
+not ok
+
+{% endif %}
+
+    </div>
 </body>
 </html>

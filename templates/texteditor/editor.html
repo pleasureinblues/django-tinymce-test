@@ -20,9 +20,14 @@
 <body>
 
 
-{% block title %} TinyMCE Test{% endblock %}
+{% block title %} <h2>TinyMCE Test</h2>{% endblock %}
 
 {% block body_block %}
+<br>
+<div>
+<a href="{% url 'texteditor:editor' %}">Editor</a>
+<a href="{% url 'texteditor:data_view' %}">Messages</a>
+</div>
 
 {{ form1.media }}
 
